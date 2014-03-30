@@ -15,7 +15,6 @@ $search_input = array (
 		
 		"Castleknock 3 bedroom for sale from 1000 to 10000",
 		"3 bed to sale in Dublin",
-		"3 bed of 3 or 4"
 );
 
 /* initial the dict */
