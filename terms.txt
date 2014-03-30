@@ -17,7 +17,5 @@ bed bed
 beds bed
 bedroom bed
 bedrooms bed
-week price
-weekly price
 month price
 monthly price
