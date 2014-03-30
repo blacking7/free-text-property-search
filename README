@@ -1,0 +1,33 @@
+Simple Free Text Property Search
+
+1. Objectives
+1) Create a PHP Class that parses a user inputted string into key variables namely:
+    Search Type (e.g. rental, sales)
+    Area (Castleknock, Dundrum, etc. Full list available from API)
+    Price (e.g. Min-max)
+    Bedroom Number
+2) Produce clean and well formatted/documented code.
+3) Code should comply with PEAR coding standards
+4) Integrate with Daft API to produce a property result set. [Optional]
+
+2. Program
+1) search.php
+This is to test the program.
+ 
+2) dict.php
+This class is a dictionary and all the keyword is in this dict.
+2.1) The dict is a 'Hash-Map' and the format is : 
+    (term_name, (trem_id, term_type)).
+2.2) The term type is : area, county, rent, sale, bed, price.
+2.3) Build dict and get term makes in this class.
+
+3) parser.php
+This class is to parse the input sentence to research key variable.
+3.1) Base the terms in dict during parsing process.
+3.2) The value before and after the term may be the number of term. 
+The value postion is (term_postion - window, term_position + window)
+So it support flip sentence.
+3.3) Return the key variable
+
+4) property.php
+1) This class is to send request to Daft with key variable.
