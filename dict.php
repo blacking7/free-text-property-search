@@ -11,10 +11,10 @@
 class Dict {
 	const RENT = "rent";
 	const SALE = "sale";
-        const AREA = "area";
-        const COUNTY = "county";
-        const BED = "bed";
-        const PRICE = "price";
+    const AREA = "area";
+    const COUNTY = "county";
+    const BED = "bed";
+    const PRICE = "price";
     
 	const TERM_ID = "id";
 	const TERM_TYPE = "keyword_type"; 
