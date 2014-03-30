@@ -14,7 +14,7 @@ $search_input = array (
 		"3 or 4 bed house to rent in Dundrum for 1000 per month",
 		
 		"Castleknock 3 bedroom for sale from 1000 to 10000",
-		"3 bed to sale in Dublin",
+		"3 bed to sale in Dublin"
 );
 
 /* initial the dict */
