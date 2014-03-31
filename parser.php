@@ -24,7 +24,7 @@ class Parser {
 	}
 	
 	/* parses a string into key variables */
-	function parse_string() {
+	public function parseString() {
 		$key_variable = array(); 
 		$query_params = array(); 
 		
@@ -40,48 +40,48 @@ class Parser {
 		$price_regex = "/\\b[0-9]{3,}\\b/";
 				
 		/* split the string */
-		$tokens = self::tokenize_string ( $this->search_query, self::DELIMETER );
+		$tokens = self::tokenizeString ( $this->search_query, self::DELIMETER );
 		
 		foreach ( $tokens as $token ) {
 			
 			/* get term from dict if it is in dict */
-			$term =  $this->dict->get_term ($token);
+			$term =  $this->dict->getTerm ($token);
 			
 			if ($term != null) {
 				/* search the rent type key word */
-				if($term[Dict::TERM_TYPE] == Dict::RENT){
+				if($term[Dict::TERM_TYPE] === Dict::RENT){
 					$key_variable["search_type"] = Dict::RENT;
 					
 				/* search the sale type key word */
-				}elseif ($term[Dict::TERM_TYPE] == Dict::SALE){
+				}elseif ($term[Dict::TERM_TYPE] === Dict::SALE){
 					$key_variable["search_type"] = Dict::SALE;
 					
 					/* get the sale price */
-					$sale_price = self::get_sale_price($tokens);
+					$sale_price = self::getSalePrice($tokens);
 					
 					$query_params["min_price"] = $sale_price["min_price"];
 					$query_params["max_price"] = $sale_price["max_price"]; 
 									
 				/* search the area key word */
-				}elseif ($term[Dict::TERM_TYPE] == Dict::AREA){
+				}elseif ($term[Dict::TERM_TYPE] === Dict::AREA){
 					$query_params["areas"] = $term[Dict::TERM_ID];
 					
 				/* search the county key word */
-				}elseif ($term[Dict::TERM_TYPE] == Dict::COUNTY){
+				}elseif ($term[Dict::TERM_TYPE] === Dict::COUNTY){
 					$query_params["counties"] = $term[Dict::TERM_ID];
 					
 				/* search the bedroom number */
-				}elseif ($term[Dict::TERM_TYPE] == Dict::BED){
+				}elseif ($term[Dict::TERM_TYPE] === Dict::BED){
 					
 					/* get the bedrooms number */
-					$bedroom_amount = self::get_number_variable($array_index, $tokens, $bed_num_regex);
+					$bedroom_amount = self::getNumberVariable($array_index, $tokens, $bed_num_regex);
 					
 					$query_params["min_bedrooms"] = $bedroom_amount["min"];
 					$query_params["max_bedrooms"] = $bedroom_amount["max"];
 					 
 				/* serach the rent price */	
-				}elseif ($term[Dict::TERM_TYPE] == Dict::PRICE){
-					$rent_price = self::get_number_variable($array_index, $tokens, $price_regex);
+				}elseif ($term[Dict::TERM_TYPE] === Dict::PRICE){
+					$rent_price = self::getNumberVariable($array_index, $tokens, $price_regex);
 					
 					$query_params["min_price"] = $rent_price["min"];
 					$query_params["max_price"] = $rent_price["max"];
@@ -99,7 +99,7 @@ class Parser {
 	/* search the number before and after the keyword
 	 * the position is (keyword_position - window_size, keyword_postion + window_size)
 	*/
-	function get_number_variable($array_index, $tokens, $price_regex){
+	public function getNumberVariable($array_index, $tokens, $price_regex){
 		$window_size = 4;
 	
 		$min_num = 0;
@@ -117,7 +117,7 @@ class Parser {
 	
 				$num = intval($tokens[$pre_term_index]);
 					
-				if($max_num == 0){
+				if($max_num === 0){
 					$max_num = $num;
 				}elseif ($num > $max_num) {
 					$min_num = $max_num;
@@ -139,7 +139,7 @@ class Parser {
 	 * 2.the sale price is very large
 	 * 3.so we search the large number in the sentence and believe it is the price
 	 */
-	function get_sale_price($tokens){
+	public function getSalePrice($tokens){
 			
 		$min_price = 0;
 		$max_price = 0;
@@ -149,7 +149,7 @@ class Parser {
 		foreach ( $tokens as $token ) {
 			if(preg_match($price_regex, $token)){
 				$num = intval($token);
-				if($max_price == 0){
+				if($max_price === 0){
 					$max_price = $num;
 				}elseif ($num > $max_price) {
 					$min_price = $max_price;
@@ -167,7 +167,7 @@ class Parser {
 	}
 	
 	/* tokenize and nominalize string */
-	function tokenize_string($search_query, $delimeter) {
+	public function tokenizeString($search_query, $delimeter) {
 		$strs = explode ( $delimeter, $search_query );
 		$tokens = array();
 		

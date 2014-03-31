@@ -24,11 +24,11 @@ foreach($search_input as $input){
 	
 	/* paring the input */
 	$parser = new Parser ( $input, $dict );
-	$key_variable = $parser->parse_string ();
+	$key_variable = $parser->parseString ();
 	
 	/* get the property from Daft */
 	$property = new Property ( $key_variable );
-	$results = $property->get_property ();
+	$results = $property->getProperty ();
 	
 	/* show the result from Daft*/
 	if($results != null){

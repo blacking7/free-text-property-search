@@ -22,11 +22,11 @@ class Dict {
 	public $dict = array ();
 	
 	public function __construct() {
-		self::build_dict ();
+		self::buildDict ();
 	}
 	
 	/* build the dict */
-	function build_dict() {
+	public function buildDict() {
 		
 		/* add area list to the dict */
 		$DaftAPI = new SoapClient ( "http://api.daft.ie/v2/wsdl.xml" );
@@ -75,7 +75,7 @@ class Dict {
 	}
 	
 	/* get term from dict if the term is in dict */
-	function get_term($term) {
+	public function getTerm($term) {
 		if ($this->dict [$term]) {
 			return $this->dict [$term];
 		} else {

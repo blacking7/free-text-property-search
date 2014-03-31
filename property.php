@@ -14,7 +14,7 @@ class Property {
 	}
 	
 	/*get property from Daft API*/
-	function get_property() {
+	public function getProperty() {
 		$DaftAPI = new SoapClient ( "http://api.daft.ie/v2/wsdl.xml" );
 		
 		$parameters = array (
@@ -23,9 +23,9 @@ class Property {
 		);
 		
 		/* sent request to Daft through different interface */
-		if ($this->key_variable ["search_type"] == Dict::SALE) {
+		if ($this->key_variable ["search_type"] === Dict::SALE) {
 			$response = $DaftAPI->search_sale ( $parameters );
-		} elseif ($this->key_variable ["search_type"] == Dict::RENT) {
+		} elseif ($this->key_variable ["search_type"] === Dict::RENT) {
 			$response = $DaftAPI->search_rental ( $parameters );				
 		}
 				
